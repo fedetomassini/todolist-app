@@ -1,28 +1,10 @@
 import Swal from 'sweetalert2';
-import ReactDOM from 'react-dom'; // Import ReactDOM
-import { taskContent, tasksContainer } from "../hooks/refs";
-import TodoCard from '../components/TodoCard';
+import { taskID, taskDate, taskContent, createTaskButton, deleteTaskButton, deleteAllTaksButton } from "../hooks/refs";
 
-let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-
-const saveLocalStorage = (tasksList) => {
-    localStorage.setItem("tasks", JSON.stringify(tasksList));
-}
-
-const createTask = (content) => {
-    return <TodoCard taskContent={content} />;
-}
-
-const renderTasks = (todoList) => {
-    const taskElements = todoList.map((task) => createTask(task.taskContent));
-
-    // Use ReactDOM to render the components into tasksContainer
-    ReactDOM.render(taskElements, tasksContainer.current);
-}
 
 export async function createNewTask() {
-    const { value: taskContent } = await Swal.fire({
-        input: 'textarea',
+    const { value: taskName } = await Swal.fire({
+        input: 'text',
         inputLabel: 'Creating new task',
         inputPlaceholder: 'Type your task here...',
         inputAttributes: {
@@ -30,18 +12,14 @@ export async function createNewTask() {
         },
         showCancelButton: true,
         confirmButtonText: 'Add',
+        heightAuto: true,
+        width: 425,
         background: '#171717',
         color: "#8B97A2"
     })
 
-    if (taskContent) {
-        const newTask = {
-            taskContent: taskContent,
-        };
+    if (taskName) {
 
-        tasks = [...tasks, newTask];
-        saveLocalStorage(tasks);
-        renderTasks(tasks);
     }
 }
 
@@ -54,13 +32,22 @@ export async function deleteAllTasks() {
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete it!',
+        heightAuto: true,
+        width: 425,
         background: '#171717',
         color: "#8B97A2"
-    }).then((result) => {
+    }
+    ).then((result) => {
         if (result.isConfirmed) {
             localStorage.clear();
             console.log('Tasks cleared');
-            renderTasks([]); // Clear the tasksContainer
+            Swal.fire({
+                title: 'Deleted!',
+                text: 'Your tasks has been deleted.',
+                icon: 'success',
+                background: '#171717',
+                color: "#8B97A2"
+            })
         }
     })
 }
