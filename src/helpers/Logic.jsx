@@ -1,10 +1,24 @@
 import Swal from 'sweetalert2';
-import { taskID, taskDate, taskContent, createTaskButton, deleteTaskButton, deleteAllTaksButton } from "../hooks/refs";
+import ReactDOM from 'react-dom'; // Import ReactDOM
+import { taskContent, tasksContainer } from "../hooks/refs";
+import TodoCard from '../components/TodoCard';
 
+let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
+const saveLocalStorage = (tasksList) => {
+    localStorage.setItem("tasks", JSON.stringify(tasksList));
+}
 
-let tasksList = [''];
-localStorage.getItem('tasksList', tasksList);
+const createTask = (content) => {
+    return <TodoCard taskContent={content} />;
+}
+
+const renderTasks = (todoList) => {
+    const taskElements = todoList.map((task) => createTask(task.taskContent));
+
+    // Use ReactDOM to render the components into tasksContainer
+    ReactDOM.render(taskElements, tasksContainer.current);
+}
 
 export async function createNewTask() {
     const { value: taskContent } = await Swal.fire({
@@ -21,9 +35,13 @@ export async function createNewTask() {
     })
 
     if (taskContent) {
-        const taskKey = 'task_' + Date.now();
-        tasksList.push(taskKey + ' ' + taskContent);
-        localStorage.setItem('tasksList', tasksList)
+        const newTask = {
+            taskContent: taskContent,
+        };
+
+        tasks = [...tasks, newTask];
+        saveLocalStorage(tasks);
+        renderTasks(tasks);
     }
 }
 
@@ -38,18 +56,11 @@ export async function deleteAllTasks() {
         confirmButtonText: 'Yes, delete it!',
         background: '#171717',
         color: "#8B97A2"
-
     }).then((result) => {
         if (result.isConfirmed) {
             localStorage.clear();
             console.log('Tasks cleared');
-            Swal.fire({
-                title: 'Deleted!',
-                text: 'Your tasks has been deleted.',
-                icon: 'success',
-                background: '#171717',
-                color: "#8B97A2"
-            })
+            renderTasks([]); // Clear the tasksContainer
         }
     })
 }
