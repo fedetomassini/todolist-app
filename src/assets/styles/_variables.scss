@@ -1,0 +1,23 @@
+// Variables \\
+$defaultTextColor: #e8e8e8;
+$defaultBackgroundColor: #1e1e1e;
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+    cursor: default;
+    color: $defaultTextColor;
+    background: $defaultBackgroundColor;
+}
+
+::-webkit-scrollbar{
+    width: 2px;
+    height: 2px;
+    background-color: $defaultBackgroundColor;
+}
+
+::-webkit-scrollbar-thumb{
+    @apply bg-green-400;
+}
