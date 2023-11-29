@@ -1,21 +1,19 @@
-import React from 'react';
+import React from "react";
 
-import Wrapper from './Wrapper';
+import Wrapper from "./Wrapper";
+import TaskManager from "../../helpers/TaskManager";
 
 // Global Styles \\
-import '../../assets/styles/_variables.scss';
-
-import Button from '../Button';
+import "../../assets/styles/_variables.scss";
 
 const App = () => {
     return (
         <>
-        <Wrapper>
-            {/* Todos */}
-            <Button/>
-        </Wrapper>
+            <Wrapper>
+                <TaskManager/>
+            </Wrapper>
         </>
-  )
-}
+    );
+};
 
 export default App;

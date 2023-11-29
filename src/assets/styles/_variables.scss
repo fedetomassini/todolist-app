@@ -6,18 +6,18 @@ $defaultBackgroundColor: #1e1e1e;
 @tailwind components;
 @tailwind utilities;
 
-:root{
+:root {
     cursor: default;
     color: $defaultTextColor;
     background: $defaultBackgroundColor;
 }
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
     width: 2px;
     height: 2px;
     background-color: $defaultBackgroundColor;
 }
 
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
     @apply bg-green-400;
 }
