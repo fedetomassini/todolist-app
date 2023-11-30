@@ -4,7 +4,6 @@ import {
     PiFilePlusFill,
     PiFileXFill,
     PiBracketsCurlyBold,
-    PiBracketsSquareBold,
 } from "react-icons/pi";
 
 import TodoCard from "../components/TodoCard";
@@ -78,6 +77,8 @@ function TaskManager() {
             },
             showCancelButton: true,
             confirmButtonText: "Add",
+            confirmButtonColor: '#637E76',
+            cancelButtonColor: '#B06161',
             heightAuto: true,
             width: 425,
             background: "#171717",
@@ -116,23 +117,36 @@ function TaskManager() {
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!",
+            confirmButtonColor: '#637E76',
+            cancelButtonColor: '#B06161',
             heightAuto: true,
             width: 425,
             background: "#171717",
             color: "#8B97A2",
         }).then((result) => {
-            if (result.isConfirmed) {
+            if (result.isConfirmed && localStorage.length !== 0) {
                 // Limpiar el localStorage y actualizar el estado de las tareas
                 localStorage.clear();
                 setTasks([]);
                 // Informar al usuario que las tareas han sido eliminadas
                 Swal.fire({
-                    title: "Deleted!",
                     text: "Your tasks have been deleted.",
                     icon: "success",
+                    confirmButtonColor: '#31304D',
+                    heightAuto: true,
+                    width: 425,
                     background: "#171717",
                     color: "#8B97A2",
                 });
+            } else{
+                Swal.fire({
+                    text: "The list is already clear.",
+                    confirmButtonColor: '#31304D',
+                    heightAuto: true,
+                    width: 425,
+                    background: "#171717",
+                    color: "#8B97A2",
+                })
             }
         });
     }
@@ -157,7 +171,7 @@ function TaskManager() {
                 <div className="flex items-center">
                     <span className="text-[12px] text-[#787878] mr-6 italic font-medium">
                         Made by:{" "}
-                        <a href="https://github.com/fedetomassini" target="_blank" className="text-emerald-500 underline underline-offset-4 decoration-dashed hover:underline-offset-[7px] transition-all delay-75">
+                        <a href="https://github.com/fedetomassini" target="_blank" className="text-[#B06161] underline underline-offset-4 decoration-dashed hover:underline-offset-[7px] transition-all delay-75">
                             @fedetomassini
                         </a>
                     </span>
