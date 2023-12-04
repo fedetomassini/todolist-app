@@ -114,8 +114,6 @@ function TaskManager() {
             text: "You won't be able to revert this!",
             icon: "warning",
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!",
             confirmButtonColor: '#637E76',
             cancelButtonColor: '#B06161',
@@ -153,10 +151,12 @@ function TaskManager() {
 
     return (
         <div className="flex items-center justify-center h-full w-full">
-            {renderTasks()}
+            <div className="overflow-y-auto max-h-[520px] py-2">
+                {renderTasks()}
+            </div>
             {/* Botones para añadir y eliminar tareas */}
             <div className="flex flex-col items-center justify-center my-auto mx-auto gap-2 p-4 w-full h-fit absolute right-0 left-0 bottom-0 space-x-4 bg-[#1e1e1e]">
-                <div className="flex items-center justify-center w-full h-fit">
+                <div className="flex items-center justify-center my-auto mx-auto  w-full h-fit">
                     <button
                         onClick={createNewTask}
                         className="pl-2 pr-2 hover:scale-[105%] hover:text-green-400 transition-all delay-75">

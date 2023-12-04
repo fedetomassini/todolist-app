@@ -2,7 +2,7 @@
     "name": "todolist-app",
     "author": "https://github.com/fedetomassini",
     "private": true,
-    "version": "1.0.0",
+    "version": "1.0.2",
     "scripts": {
         "dev": "vite",
         "build": "vite build",
@@ -12,21 +12,21 @@
     "dependencies": {
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "react-icons": "^4.11.0",
+        "react-icons": "^4.12.0",
         "sass": "^1.69.5",
-        "sweetalert2": "^11.8.0"
+        "sweetalert2": "^11.10.1"
     },
     "devDependencies": {
-        "@types/react": "^18.2.15",
-        "@types/react-dom": "^18.2.7",
-        "@vitejs/plugin-react": "^4.0.3",
+        "@types/react": "^18.2.41",
+        "@types/react-dom": "^18.2.17",
+        "@vitejs/plugin-react": "^4.2.1",
         "autoprefixer": "^10.4.16",
-        "eslint": "^8.45.0",
-        "eslint-plugin-react": "^7.32.2",
+        "eslint": "^8.55.0",
+        "eslint-plugin-react": "^7.33.2",
         "eslint-plugin-react-hooks": "^4.6.0",
-        "eslint-plugin-react-refresh": "^0.4.3",
-        "postcss": "^8.4.31",
+        "eslint-plugin-react-refresh": "^0.4.5",
+        "postcss": "^8.4.32",
         "tailwindcss": "^3.3.5",
-        "vite": "^4.4.5"
+        "vite": "^5.0.5"
     }
 }
